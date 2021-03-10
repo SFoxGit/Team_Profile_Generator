@@ -12,10 +12,134 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const manageQuestions = [
+  {
+    type: 'input',
+    message: 'What is the name of the team Manager?',
+    name: 'name',
+  },
+  {
+    type: 'input',
+    message: 'What is the employee ID of the Manager?',
+    name: 'id',
+  },
+  {
+    type: 'input',
+    message: 'What is the email address of the Manager?',
+    name: 'email',
+  },
+  {
+    type: 'input',
+    message: 'What is the office number of the Manager?',
+    name: 'office',
+  },
+  {
+    type: 'list',
+    message: 'What would you like to do?',
+    name: 'next',
+    choices: ['Add Engineer', 'Add Intern', 'Finish Building My Team']
+  },
+];
+
+const engineerQuestions = [
+  {
+    type: 'input',
+    message: 'What is the name of the Engineer?',
+    name: 'name',
+  },
+  {
+    type: 'input',
+    message: 'What is the employee ID of the Engineer?',
+    name: 'id',
+  },
+  {
+    type: 'input',
+    message: 'What is the email address of the Engineer?',
+    name: 'email',
+  },
+  {
+    type: 'input',
+    message: 'What is the GitHub username of the Engineer?',
+    name: 'gitHub',
+  },
+  {
+    type: 'list',
+    message: 'What would you like to do?',
+    name: 'next',
+    choices: ['Add Engineer', 'Add Intern', 'Finish Building My Team']
+  },
+];
+
+const internQuestions = [
+  {
+    type: 'input',
+    message: 'What is the name of the Intern?',
+    name: 'name',
+  },
+  {
+    type: 'input',
+    message: 'What is the employee ID of the Intern?',
+    name: 'id',
+  },
+  {
+    type: 'input',
+    message: 'What is the email address of the Intern?',
+    name: 'email',
+  },
+  {
+    type: 'input',
+    message: 'What is the school of the Intern?',
+    name: 'school',
+  },
+  {
+    type: 'list',
+    message: 'What would you like to do?',
+    name: 'next',
+    choices: ['Add Engineer', 'Add Intern', 'Finish Building My Team']
+  },
+];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const employees = [];
 
+function init() {
+  inquirer
+  .prompt(manageQuestions)
+  .then(answers => {
+    const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
+    const engineer = []
+    if (answers.next === "Add Engineer") {
+      employees.push(addEngineer());
+    } else if (answers.next === "Add Intern") {
+      employees.push(addIntern());
+    } else {
+      console.log('end')
+    }
+    console.log(employees)
+  })
+}
+
+function addEngineer() {
+  inquirer
+    .prompt(engineerQuestions)
+    .then(answers => {
+      const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHub);
+      return engineer
+    })
+};
+
+function addIntern() {
+  inquirer
+    .prompt(internQuestions)
+    .then(answers => {
+      const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+      return intern
+    })
+};
+
+
+init();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
