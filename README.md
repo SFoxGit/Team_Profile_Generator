@@ -51,6 +51,8 @@ Clone the repo - change into the directory - enter "npm i" into the command line
 ---
 ## Usage
 
+[Video](https://drive.google.com/file/d/1kBk7dlrSnEdYkOIyzM2uV3UwfyIvK6Ra/view)
+
 Teams must consist of one Manager, number of interns and engineers can varry. Once you've created the html file via prompts move it wherever you'd like it!
 
 ---
