@@ -12,17 +12,21 @@ Shawn Fox
 ---
 ## Project Links:
 
-- Deployed site: [GitHub Pages]()
-- GitHub: [SFoxGit]()
+- Deployed site: Not Deployed, is node app.
+- GitHub: [SFoxGit](https://github.com/SFoxGit/Team_Profile_Generator)
 
 ---
 ## Table of Contents
 
 - [Description](##Description)
 
-- [Requirements](##Requirements)
+- [Installation](##Installation)
+  
+- [Usage](##Usage)
+  
+- [Tests](##Tests)
 
-- [Progress](##Progress)
+- [Requirements](##Requirements)
 
 - [Contributions](##Contributing)
 
@@ -31,6 +35,28 @@ Shawn Fox
 ---
 ## Description
 
+Answer command line prompts about the employees within your team and this team profile generator will create an HTML for you with their information.
+
+![Prompts](./assets/images/prompts.jpg)
+
+![Html](./assets/images/displayed.jpg)
+
+---
+## Installation
+
+Required: Nodejs
+
+Clone the repo - change into the directory - enter "npm i" into the command line (this will install jest and inquirer) - enter "node app.js" into command line - follow the prompts - your new team profile html will be in a folder created called output!
+
+---
+## Usage
+
+Teams must consist of one Manager, number of interns and engineers can varry. Once you've created the html file via prompts move it wherever you'd like it!
+
+---
+## Tests
+
+Using Jest to ensure each class Employee, Manager, Engineer, Intern have the necessary keys in the constructor, the constructor works, and the functions can be called from them. See test folder. With Jest installed run npm test in the command line
 
 ---
 ## Requirements
@@ -61,17 +87,18 @@ THEN I exit the application, and the HTML is generated
 ---
 ### Must include:
 
-The application must include Employee, Manager, Engineer, and Intern classes. The tests for these classes (in the _tests_ directory) must ALL pass.
-    
----
-## Progress
-    
+The application must include Employee, Manager, Engineer, and Intern classes. The tests for these classes (in the tests directory) must ALL pass.
 
 ---
 ## Contributing
 
+Please contact me if you'd like to contribute
 
 ---
 ## Credits
 
+SBoudrias - Inquirer.js
 
+@fbjest - Jestjs
+
+Anthony Cooper (Instructor) & Maxwell Allee (TA) - for starter code!

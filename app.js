@@ -108,15 +108,15 @@ function init() {
   .prompt(manageQuestions)
   .then(answers => {
     const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
-    const engineer = []
+    employees.push(manager);
     if (answers.next === "Add Engineer") {
-      employees.push(addEngineer());
+      addEngineer();
     } else if (answers.next === "Add Intern") {
-      employees.push(addIntern());
+      addIntern();
     } else {
-      console.log('end')
+      writeHTML(render(employees))
     }
-    console.log(employees)
+    
   })
 }
 
@@ -125,7 +125,14 @@ function addEngineer() {
     .prompt(engineerQuestions)
     .then(answers => {
       const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHub);
-      return engineer
+      employees.push(engineer);
+      if (answers.next === "Add Engineer") {
+        addEngineer();
+      } else if (answers.next === "Add Intern") {
+        addIntern();
+      } else {
+        writeHTML(render(employees))
+      }
     })
 };
 
@@ -134,7 +141,14 @@ function addIntern() {
     .prompt(internQuestions)
     .then(answers => {
       const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-      return intern
+      employees.push(intern);
+      if (answers.next === "Add Engineer") {
+        addEngineer();
+      } else if (answers.next === "Add Intern") {
+        addIntern();
+      } else {
+        writeHTML(render(employees))
+      }
     })
 };
 
@@ -149,7 +163,20 @@ init();
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
-
+const writeHTML = newHTML => {
+  if (fs.existsSync(outputPath)) {
+    fs.writeFile(outputPath, newHTML, function (err) {
+      if (err) throw err;
+      console.log('New Team Page Created!')
+    })
+  } else {
+    fs.mkdirSync(OUTPUT_DIR)
+    fs.writeFile(outputPath, newHTML, function (err) {
+      if (err) throw err;
+      console.log('New Team Page Created!')
+    })
+  }
+}
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
 // employee type.
